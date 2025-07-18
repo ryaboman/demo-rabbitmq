@@ -16,9 +16,4 @@ public class WebController {
     public String showForm() {
         return "index";
     }
-
-    @MessageMapping("/send")
-    public void handleMessage(String message) {
-        rabbitTemplate.convertAndSend("hello", message); // Отправка в RabbitMQ
-    }
 }
