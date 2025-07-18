@@ -21,6 +21,8 @@ services:
       - 8080:8080
     environment:
       SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_USER:-admin}  # Берем из .env или используем 'admin'
+      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_PASS:-password}
     depends_on:
       - rabbitmq
     networks:
@@ -32,6 +34,8 @@ services:
       - 8081:8081
     environment:
       SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_USER:-admin}  # Берем из .env или используем 'admin'
+      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_PASS:-password}
     depends_on:
       - rabbitmq
     networks:
