@@ -4,18 +4,17 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.stereotype.Component;
+
 @Component
 public class MessageListener {
 
-    private final SimpMessagingTemplate messagingTemplate;
-
-    public MessageListener(SimpMessagingTemplate messagingTemplate) {
-        this.messagingTemplate = messagingTemplate;
-    }
-
     @RabbitListener(queues = "hello")
     public void processMessage(String message) {
-        System.out.println("Получено сообщение: " + message);
-        messagingTemplate.convertAndSend("/topic/messages", message);
+        System.out.println("=== Получено сообщение ===");
+        System.out.println("Время: " + java.time.LocalTime.now());
+        System.out.println("Содержимое: " + message);
+        System.out.println("=========================");
     }
 }
